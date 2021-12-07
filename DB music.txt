@@ -1,0 +1,59 @@
+-- public.genre definition
+
+-- Drop table
+
+-- DROP TABLE public.genre;
+
+CREATE TABLE public.genre (
+	id serial4 NOT NULL,
+	"name" varchar(40) NOT NULL,
+	CONSTRAINT genre_name_key UNIQUE (name),
+	CONSTRAINT genre_pkey PRIMARY KEY (id)
+);
+
+
+-- public.singer definition
+
+-- Drop table
+
+-- DROP TABLE public.singer;
+
+CREATE TABLE public.singer (
+	id serial4 NOT NULL,
+	"name" varchar(40) NOT NULL,
+	genre_id int4 NULL,
+	CONSTRAINT singer_pkey PRIMARY KEY (id),
+	CONSTRAINT singer_genre_id_fkey FOREIGN KEY (genre_id) REFERENCES public.genre(id)
+);
+
+
+-- public.album definition
+
+-- Drop table
+
+-- DROP TABLE public.album;
+
+CREATE TABLE public.album (
+	id serial4 NOT NULL,
+	"name" varchar(40) NOT NULL,
+	"release" date NOT NULL,
+	singer_id int4 NULL,
+	CONSTRAINT album_pkey PRIMARY KEY (id),
+	CONSTRAINT album_singer_id_fkey FOREIGN KEY (singer_id) REFERENCES public.singer(id)
+);
+
+
+-- public.track definition
+
+-- Drop table
+
+-- DROP TABLE public.track;
+
+CREATE TABLE public.track (
+	id serial4 NOT NULL,
+	"name" varchar(40) NOT NULL,
+	duration time NOT NULL,
+	album_id int4 NULL,
+	CONSTRAINT track_pkey PRIMARY KEY (id),
+	CONSTRAINT track_album_id_fkey FOREIGN KEY (album_id) REFERENCES public.album(id)
+);
