@@ -42,4 +42,4 @@ CREATE TABLE public.employee (
 	CONSTRAINT employee_pkey PRIMARY KEY (id),
 	CONSTRAINT employee_chief_id_fkey FOREIGN KEY (chief_id) REFERENCES public.chief(id),
 	CONSTRAINT employee_department_id_fkey FOREIGN KEY (department_id) REFERENCES public.department(id)
-);
+); 
